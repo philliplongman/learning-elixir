@@ -8,4 +8,4 @@ fizzbuzz = fn n ->
   IO.puts output.(rem(n,3), rem(n,5), n)
 end
 
-Enum.map(0..15, fizzbuzz)
+Enum.each(0..15, fizzbuzz)
