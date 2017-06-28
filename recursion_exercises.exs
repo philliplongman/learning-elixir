@@ -13,21 +13,18 @@ defmodule Recursion do
 
   # Guess an integer between 1 and 1000
   defmodule Guess do
-    def guess(actual, x..y) when actual == div(x + y, 2) do
-      new_guess = div(x + y, 2)
-      IO.puts "Is it #{new_guess}?"
-      actual
+    def guess(actual, x..y), do: _guess(actual, div(x + y, 2), x..y)
+
+    defp _guess(actual, actual, _) do
+      IO.puts "Is it #{actual}?\n#{actual}"
     end
-    def guess(actual, x..y) when actual < div(x + y, 2) do
-      new_guess = div(x + y, 2)
-      IO.puts "Is it #{new_guess}?"
-      guess actual, x..new_guess
+    defp _guess(actual, g, x..y) when g < actual do
+      IO.puts "Is it #{g}?"
+      _guess actual, div(g + y, 2), g..y
     end
-    def guess(actual, x..y) when actual > div(x + y, 2) do
-      new_guess = div(x + y, 2)
-      IO.puts "Is it #{new_guess}?"
-      guess actual, new_guess..y
+    defp _guess(actual, g, x..y) when g > actual do
+      IO.puts "Is it #{g}?"
+      _guess actual, div(x + g, 2), x..g
     end
   end
-
 end
